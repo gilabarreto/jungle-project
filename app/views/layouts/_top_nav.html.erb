@@ -22,25 +22,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <%# <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          > %>
-            <%# Categories %>
-          <%# </a>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown"> %>
             <% Category.all.each do |category| %>
             <li class="nav-item">
               <%= link_to category.name, category, class: "nav-link" %>
             </li>
             <% end %>
-          <%# </ul>
-        </li> %>
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
@@ -64,7 +50,16 @@
           <%= link_to cart_path, class: "nav-link " do %> <%= fa_icon "shopping-cart" %>
           My Cart (<%= cart.size %>) <% end %>
         </li>
+        <li class="nav-link">
+        <% if current_user %>
+      Signed in as <%= current_user.email %> | <%= link_to "Logout", '/logout', class: "text-danger" %>
+      <% else %>
+      <%= link_to 'Login', '/login', class: "text-danger" %> | <%= link_to 'Signup', '/signup', class: "text-danger" %>
+    <% end %>
+
+   </li>
       </ul>
+      
     </div>
   </div>
 </nav>
