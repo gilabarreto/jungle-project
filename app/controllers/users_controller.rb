@@ -3,10 +3,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new({ first_name: user_params[:first_name],
-                     last_name: user_params[:last_name],
-                     email: user_params[:email],
-                     password: user_params[:password] })
+    user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
       redirect_to "/"
